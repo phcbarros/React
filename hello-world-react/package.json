@@ -4,7 +4,11 @@
   "description": "Exemplo de Setup de uma aplicação em React com Webpack e Babel",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
   "dependencies": {
+    "babel-loader": "^7.1.0",
     "html-webpack-plugin": "^2.29.0",
     "path": "^0.12.7",
     "webpack": "^3.0.0",
