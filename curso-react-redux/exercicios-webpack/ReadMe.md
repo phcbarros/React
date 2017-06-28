@@ -21,6 +21,19 @@ module.exports = {
         port: 8080,
         contentBase: './public' //pasta base onde estão os arquivos que serão carregados
     }
+
+    //configuração de módulos
+    module: {
+        loaders: [{
+            test: /.js?$/, //quais arquivos serão carregados
+            loader: 'babel-loader', //loader usado (faz a interface entre o webpack e o babel)
+            exclude: /node_modules/, //arquivos excluídos
+            //processo a ser executado pelo loader
+            query: {
+                presets: ['es2015']
+            }
+        }]
+    }
 }
 ```
 
