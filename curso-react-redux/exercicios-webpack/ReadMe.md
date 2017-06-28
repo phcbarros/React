@@ -24,6 +24,8 @@ module.exports = {
 }
 ```
 
+O Webpack suporta usar sistema de módulo do CommonJS ou o ES2015.
+
 ## Webpack Dev Server
 
 Criando **_NPM script_** para executar o webpack-dev-server.

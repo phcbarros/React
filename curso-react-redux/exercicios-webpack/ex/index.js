@@ -1,1 +1,2 @@
-console.log('Webpack');
+const logger = require('./logger');
+logger.Info('Usando o padrão CommonJS!!');
