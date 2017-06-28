@@ -31,7 +31,7 @@ module.exports = {
             //processo a ser executado pelo loader
             query: {
                 presets: ['es2015'],
-                plugins: ['transform-object-rest-spread']
+                plugins: ['transform-object-rest-spread'] //usado para conseguir usar o operador rest/spread
             }
         }]
     }
