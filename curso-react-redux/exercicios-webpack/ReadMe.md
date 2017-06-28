@@ -6,6 +6,8 @@ Arquivo de configuração do Webpack que será executado dentro do **_Node_**. A
 
 ```javascript
 //webpack.config.js
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 module.exports = {
     //arquivo de entrada da aplicação (por onde o bundle começará a ser executado)
     entry: './ex/index.js',
@@ -21,6 +23,11 @@ module.exports = {
         port: 8080,
         contentBase: './public' //pasta base onde estão os arquivos que serão carregados
     }
+    
+    //configurando plugins
+    plugins: [
+        new ExtractTextPlugin('app.css')
+    ],
 
     //configuração de módulos
     module: {
@@ -33,6 +40,9 @@ module.exports = {
                 presets: ['es2015'],
                 plugins: ['transform-object-rest-spread'] //usado para conseguir usar o operador rest/spread
             }
+        },{
+            test: /\.css$/,
+            loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
         }]
     }
 }
