@@ -13,3 +13,17 @@ export default function() {
     return(<h1>Meu Primeiro Componente</h1>)
 }
 ```
+
+Para passar parâmetros para os componentes é nessário passar via **_propriedades (props)_**.
+
+```javascript
+// componente.jsx
+export default (props) => (
+    <h1>{ props.value }</h1>
+)
+
+// index.jsx
+import Componente from './componente';
+
+ReactDOM.render(<Componente value="Show!"/>, document.getElementById('app'));
+```
