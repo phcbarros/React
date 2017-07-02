@@ -3,8 +3,7 @@ import Member from './member';
 
 export default props => (
     <div>
-        <Member name="Ana" lastName= "Costa" />
-        <Member name="Ian" lastName= "Franco" />
-        <Member name="Paulo" lastName= "Barros" />
+        <h1>Família</h1>
+        { props.children}
     </div>
 )
