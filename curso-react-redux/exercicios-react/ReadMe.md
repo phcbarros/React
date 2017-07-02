@@ -27,3 +27,23 @@ import Componente from './componente';
 
 ReactDOM.render(<Componente value="Show!"/>, document.getElementById('app'));
 ```
+
+O React não permite que renderizar dois componentes, para poder fazer isso é necessário colocar esse componentes dentro de um outro componente ou de um elemento html.
+
+```javascript
+import { Primeiro, Segundo } from './componente';
+
+// Errado
+ReactDOM.render(
+    <Primeiro />
+    <Segundo />
+, document.getElementById('app'));
+
+// Correto
+ReactDOM.render(
+    <div>
+        <Primeiro />
+        <Segundo />
+    </div>
+, document.getElementById('app'));
+```
