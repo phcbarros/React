@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Family from './family';
+import { Primeiro, Segundo } from './componente';
 
 ReactDOM.render(
-    <Family />
+    <div>
+        <Primeiro />
+        <Segundo />
+    </div>
 , document.getElementById('app'));
