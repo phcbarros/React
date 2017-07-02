@@ -95,3 +95,23 @@ ReactDOM.render(
     </ Family>
 , document.getElementById('app'));
 ```
+
+## Passagem de dados do componente pai para o filho
+
+Para passar dados do componente pai para o filho podemos usar o método **_React.cloneElement(element, props)_**. O primeiro parâmetro a ser passado é o elemento e segundo as propriedades.
+
+```javascript
+export default props => (
+    <div>
+        <h1>Família</h1>
+        { React.cloneElement(props.children, props) }
+    </div>
+)
+
+// index.jsx
+ReactDOM.render(
+    <Family lastName="Barros">
+        <Member name="Paulo" />
+    </ Family>
+, document.getElementById('app'));
+```
