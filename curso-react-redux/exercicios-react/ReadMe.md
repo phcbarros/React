@@ -175,3 +175,34 @@ export default class ClasseComponente extends Component {
     }
 }
 ```
+
+### Estado Controlado (controlled) e Não Controlado (uncontrolled)
+
+Um estado controlado (controlled) é quando somente o meu javascript pode promover/evoluir (alterar) o valor do estado do meu componente, ou seja, o DOM não consegue alterar o estado do componente. E o estado não controlado (uncontrolled) o DOM consegue alterar o valor do componente.
+
+```javascript
+class Field extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { value: props.initialValue }; // estado controlado
+        // this.state = { value: null }; estado não controlado
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(event) {
+        this.setState({ value: event.target.value });
+    }
+
+    render() {
+        return (
+            <div>
+                <label>{this.state.value}</label>
+                <br/>
+                <input onChange={this.handleChange} value={this.state.value} />
+            </div>
+        )
+    }
+}
+
+export default Field;
+```
