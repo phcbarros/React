@@ -4,5 +4,5 @@ import ReactDOM from 'react-dom';
 import ClasseComponente from './classeComponente';
 
 ReactDOM.render(
-    <ClasseComponente label="Contador" initialValue={10} />
+    <ClasseComponente value="Componente usando classe" />
 , document.getElementById('app'));
