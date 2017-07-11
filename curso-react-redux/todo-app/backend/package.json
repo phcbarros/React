@@ -5,6 +5,7 @@
   "main": "src/loader.js",
   "scripts": {
     "dev": "nodemon",
+    "db": "mongod",
     "production": "pm2 start --name todo-app"
   },
   "keywords": [],
