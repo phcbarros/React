@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon",
     "db": "mongod",
-    "production": "pm2 start --name todo-app"
+    "production": "pm2 start src/loader.js --name todo-app"
   },
   "keywords": [],
   "author": "",
