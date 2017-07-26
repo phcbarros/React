@@ -10,7 +10,7 @@ export default props => (
                 <input type="text" id="description" className="form-control" placeholder="Digite aqui sua tarefa" />
             </Grid>
             <Grid columns="12 6 3">
-                <IconButton style="primary" icon="plus"/>
+                <IconButton style="primary" icon="plus" />
             </Grid>
         </div>
     </div>
