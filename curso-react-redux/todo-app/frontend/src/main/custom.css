@@ -1,0 +1,8 @@
+td .btn {
+    margin: 5px;
+}
+
+.mark-as-done{
+    text-decoration: line-through;
+    color: #777;
+}
