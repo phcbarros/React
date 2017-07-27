@@ -10,3 +10,7 @@
 table {
     margin-top: 5em;
 }
+
+.tableActions {
+    width: 150px;
+}
