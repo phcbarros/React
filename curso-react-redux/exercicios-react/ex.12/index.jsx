@@ -1,20 +1,17 @@
-import 'modules/bootstrap/dist/css/bootstrap.min.css';
-import 'modules/font-awesome/css/font-awesome.min.css';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-import calculatorReducer from './calculatorReducer';
-import Calculator from './calculator';
+import counterReducer from './counterReducer';
+import Counter from './counter';
 
 const reducers = combineReducers({
-    calculator: calculatorReducer
+    counter: counterReducer
 });
 
 ReactDOM.render(
     <Provider store={createStore(reducers)}>
-        <Calculator />
+        <Counter />
     </Provider>
     , document.getElementById('app'));
