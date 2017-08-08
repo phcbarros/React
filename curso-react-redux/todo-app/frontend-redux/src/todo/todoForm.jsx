@@ -1,12 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Grid from '../templates/grid';
 import IconButton from '../templates/iconButton';
 
-const ENTER = 'Enter', 
-      ESC = 'Escape';
+const ENTER = 'Enter',
+    ESC = 'Escape';
 
-export default props => {
+const TodoForm = props => {
     const keyHandler = (e) => {
         switch (e.key) {
             case ENTER:
@@ -40,3 +41,7 @@ export default props => {
         </div>
     )
 }
+
+const mapStateToProps = state => ({ description: state.todo.description });
+
+export default connect(mapStateToProps)(TodoForm);
