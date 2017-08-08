@@ -23,8 +23,8 @@ export const search = () => {
 
 export const add = (description) => {
     const request = axios.post(URL, { description });
-    return {
-        type: actions.TODO_ADDED,
-        payload: request
-    };
+    return [
+        { type: actions.TODO_ADDED, payload: request },
+        search()
+    ];
 };
