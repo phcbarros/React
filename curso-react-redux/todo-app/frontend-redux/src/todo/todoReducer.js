@@ -21,6 +21,8 @@ export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case actions.DESCRIPTION_CHANGED:
             return { ...state, description: action.payload };
+        case action.TODO_SEARCHED:
+            return { ...state, list: action.payload.data };
         default:
             return state;
     }
