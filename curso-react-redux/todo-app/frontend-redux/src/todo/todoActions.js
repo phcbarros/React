@@ -5,7 +5,7 @@ const URL = 'http://localhost:3003/api/todos';
 export const actions = ({
     DESCRIPTION_CHANGED: 'DESCRIPTION_CHANGED',
     TODO_SEARCHED: 'TODO_SEARCHED',
-    TODO_ADDED: 'TODO_ADDED'
+    TODO_CLEAR: 'TODO_CLEAR'
 });
 
 export const changeDescription = event => ({
@@ -24,7 +24,7 @@ export const search = () => {
 export const add = description => {
     return dispatch => {
         axios.post(URL, { description })
-            .then(resp => dispatch({ type: actions.TODO_ADDED, payload: resp.data }))
+            .then(resp => dispatch(clear()))
             .then(resp => dispatch(search()));
     };
 };
@@ -49,3 +49,5 @@ export const remove = todo => {
             .then(resp => dispatch(search()));
     };
 };
+
+export const clear = () => ({ type: actions.TODO_CLEAR });
