@@ -1,7 +1,13 @@
 const BillingCycles = require('./billingCycle');
+const errorHandler = require('../common/errorHandler');
 
 BillingCycles.methods(['get', 'post', 'put', 'delete']);
 BillingCycles.updateOptions({ new: true, runValidators: true });
+
+//midleware para tratamento de error
+BillingCycles
+    .after('post', errorHandler)
+    .after('put', errorHandler);
 
 BillingCycles.route('count', (req, res, next) => {
     BillingCycles.count((error, value) => {
@@ -38,7 +44,7 @@ const createErrorMessage = (res, error) => res.status(500).json({ errors: [error
 const createSuccessMessage = (res, value) => res.json(value);
 
 const createResponseMessage = (res, error, value) => {
-    if (error) 
+    if (error)
         createErrorMessage(res, error);
     else
         createSuccessMessage(res, value);
