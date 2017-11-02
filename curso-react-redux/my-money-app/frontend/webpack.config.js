@@ -12,7 +12,7 @@ module.exports = {
         contentBase: './public'
     },
     resolve: {
-        extensions: ['', 'js', 'jsx'],
+        extensions: ['', '.js', '.jsx'],
         alias: {
             modules: __dirname + '/node_modules',
             jquery: 'modules/admin-lte/plugins/jQuery/jquery-2.2.3.min.js',
@@ -34,7 +34,7 @@ module.exports = {
                 loader: 'babel-loader',
                 exclude: /node_modules/,
                 query: {
-                    presets: ['es2015, react'],
+                    presets: ['es2015', 'react'],
                     plugins: ['transform-object-rest-spread']
                 }
             },
