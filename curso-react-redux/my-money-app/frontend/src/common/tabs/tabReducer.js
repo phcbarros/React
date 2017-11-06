@@ -1,4 +1,4 @@
-const INITIAL_STATE = { selected: '' };
+const INITIAL_STATE = { selected: 'tabList' };
 
 import { SELECTED_TAB } from './tabActions';
 
