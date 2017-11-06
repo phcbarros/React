@@ -8,7 +8,6 @@ export function selectTab(tabId) {
     };
 }
 
-
 export function showTabs(...tabs) {
     const tabsToShow = {};
     tabs.forEach(e => tabsToShow[e] = true);
