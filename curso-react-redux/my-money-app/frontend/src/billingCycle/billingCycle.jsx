@@ -16,34 +16,43 @@ import { create } from './billingCycleActions';
 import List from './list/billingCycleList';
 import Form from './form/billingCycleForm';
 
+export const BILLING_CYCLE_TABS = {
+    tabList: 'tabList',
+    tabCreate: 'tabCreate',
+    tabUpdate: 'tabUpdate',
+    tabDelete: 'tabDelete'
+};
+
 class BillingCycle extends Component {
 
     componentWillMount() {
-        this.props.selectTab('tabList');
-        this.props.showTabs('tabList', 'tabCreate');
+        const { tabList, tabCreate } = BILLING_CYCLE_TABS;
+        this.props.selectTab(tabList);
+        this.props.showTabs(tabList, tabCreate);
     }
 
     render() {
+        const { tabList, tabCreate, tabUpdate, tabDelete } = BILLING_CYCLE_TABS;
         return (
             <div>
                 <ContentHeader title="Ciclo de Pagamentos" small="Cadastro" />
                 <Content>
                     <Tabs>
                         <TabsHeader>
-                            <TabHeader icon="list" label="Listar" target="tabList" />
-                            <TabHeader icon="plus" label="Incluir" target="tabCreate" />
-                            <TabHeader icon="pencil" label="Alterar" target="tabUpdate" />
-                            <TabHeader icon="trash-o" label="Excluir" target="tabDelete" />
+                            <TabHeader icon="list" label="Listar" target={tabList} />
+                            <TabHeader icon="plus" label="Incluir" target={tabCreate} />
+                            <TabHeader icon="pencil" label="Alterar" target={tabUpdate} />
+                            <TabHeader icon="trash-o" label="Excluir" target={tabDelete} />
                         </TabsHeader>
                         <TabsContent>
-                            <TabContent id="tabList">
+                            <TabContent id={tabList}>
                                 <List />
                             </TabContent>
-                            <TabContent id="tabCreate">
+                            <TabContent id={tabCreate}>
                                 <Form onSubmit={this.props.create} />
                             </TabContent>
-                            <TabContent id="tabUpdate">Alterar</TabContent>
-                            <TabContent id="tabDelete">Exlcuir</TabContent>
+                            <TabContent id={tabUpdate}>Alterar</TabContent>
+                            <TabContent id={tabDelete}>Exlcuir</TabContent>
                         </TabsContent>
                     </Tabs>
                 </Content>
