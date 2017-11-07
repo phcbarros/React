@@ -7,7 +7,7 @@ import { BILLING_CYCLE_TABS } from './billingCycle';
 import { selectTab, showTabs } from './../common/tabs/tabActions';
 
 const URL = 'http://localhost:3003/api/billingCycles'
-
+const INITIAL_VALUE = {};
 
 export const BILLING_CYCLE_FETCHED = 'BILLING_CYCLE_FETCHED';
 
@@ -20,19 +20,13 @@ export function getList() {
 }
 
 export function create(values) {
-    const { tabList, tabCreate } = BILLING_CYCLE_TABS;
     return dispatch => {
         axios.post(URL, values)
             .then(resp => {
                 toastr.success('Sucesso', 'Operação efetuado com sucesso!');
                 // dispara uma action devido ao middleware thunk
                 // dispara varias actions devido ao middleware multi
-                return dispatch([
-                    resetForm(BILLING_CYCLE_FORM),
-                    getList(),
-                    selectTab(tabList),
-                    showTabs(tabList, tabCreate)
-                ]);
+                return dispatch(init());
             })
             .catch(e => {
                 e.response.data.errors.forEach(error => toastr.error('Erro', error));
@@ -46,5 +40,15 @@ export function showUpdate(billingCycle) {
         selectTab(tabUpdate),
         showTabs(tabUpdate),
         initializeForm(BILLING_CYCLE_FORM, billingCycle)
+    ];
+}
+
+export function init() {
+    const { tabList, tabCreate } = BILLING_CYCLE_TABS;
+    return [
+        showTabs(tabList, tabCreate),
+        selectTab(tabList),
+        getList(),
+        initializeForm(BILLING_CYCLE_FORM, INITIAL_VALUE)
     ];
 }
