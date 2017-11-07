@@ -8,6 +8,7 @@ import { selectTab, showTabs } from './../common/tabs/tabActions';
 
 const URL = 'http://localhost:3003/api/billingCycles'
 
+
 export const BILLING_CYCLE_FETCHED = 'BILLING_CYCLE_FETCHED';
 
 export function getList() {
@@ -37,4 +38,12 @@ export function create(values) {
                 e.response.data.errors.forEach(error => toastr.error('Erro', error));
             });
     };
+}
+
+export function showUpdate(billingCycle) {
+    const { tabUpdate } = BILLING_CYCLE_TABS;
+    return [
+        selectTab(tabUpdate),
+        showTabs(tabUpdate)
+    ];
 }
