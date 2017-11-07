@@ -27,4 +27,4 @@ class BillingCycleForm extends Component {
 }
 
 // Fazendo a ligação com o reducer do redux-form
-export default reduxForm({ form: BILLING_CYCLE_FORM })(BillingCycleForm);
+export default reduxForm({ form: BILLING_CYCLE_FORM, destroyOnUnmount: false })(BillingCycleForm);
