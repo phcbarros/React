@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { toastr } from 'react-redux-toastr';
-import { reset as resetForm, initialize as initializeForm } from 'redux-form';
+import { reset as resetForm, initialize as initializeForm, submit } from 'redux-form';
 
 import { BILLING_CYCLE_FORM } from './form/billingCycleForm';
 import { BILLING_CYCLE_TABS } from './billingCycle';
@@ -8,6 +8,11 @@ import { selectTab, showTabs } from './../common/tabs/tabActions';
 
 const URL = 'http://localhost:3003/api/billingCycles'
 const INITIAL_VALUE = {};
+const HTTP_METHODS = {
+    POST: 'post',
+    PUT: 'put',
+    DELETE: 'delete'
+};
 
 export const BILLING_CYCLE_FETCHED = 'BILLING_CYCLE_FETCHED';
 
@@ -20,8 +25,17 @@ export function getList() {
 }
 
 export function create(values) {
+    return submitValues(values, HTTP_METHODS.POST);
+}
+
+export function update(values) {
+    return submitValues(values, HTTP_METHODS.PUT);
+}
+
+function submitValues(values, method) {
     return dispatch => {
-        axios.post(URL, values)
+        const id = values._id ? values._id : '';
+        axios[method](`${URL}/${id}`, values)
             .then(resp => {
                 toastr.success('Sucesso', 'Operação efetuado com sucesso!');
                 // dispara uma action devido ao middleware thunk
