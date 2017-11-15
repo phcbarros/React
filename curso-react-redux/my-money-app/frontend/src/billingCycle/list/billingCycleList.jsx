@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import IconButton from '../../common/form/button';
+import IconButton from '../../common/form/iconButton';
 import { getList, showUpdate, showDelete } from '../billingCycleActions';
 
 class BilligCycleList extends Component {
@@ -36,6 +36,7 @@ class BilligCycleList extends Component {
                             <th>Nome</th>
                             <th>Mês</th>
                             <th>Ano</th>
+                            <th className="table-actions">Ações</th>
                         </tr>
                     </thead>
                     <tbody>

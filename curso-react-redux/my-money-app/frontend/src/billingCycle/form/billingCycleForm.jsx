@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import LabelAndInput from './../../common/form/labelAndInput';
+import Button from '../../common/form/button';
 import { init } from './../billingCycleActions';
 
 export const BILLING_CYCLE_FORM = 'billingCycleForm';
@@ -22,9 +23,9 @@ class BillingCycleForm extends Component {
                         label="Ano" placeholder="Informe o ano" type="number" readOnly={readOnly} />
                 </div>
                 <div className="box-footer">
-                    <button type="submit" className="btn btn-primary">Submit</button>
-                    <button type="button" className="btn btn-default"
-                        onClick={this.props.init}>Cancelar</button>
+                    <Button type="submit" style="primary" label="Cadastrar"/>
+                    <Button type="button" style="default" label="Cancelar"
+                        onClick={this.props.init} />
                 </div>
             </form>
         )
