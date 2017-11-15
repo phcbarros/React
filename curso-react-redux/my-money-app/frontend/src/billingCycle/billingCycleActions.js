@@ -32,6 +32,10 @@ export function update(values) {
     return submitValues(values, HTTP_METHODS.PUT);
 }
 
+export function remove(values) {
+    return submitValues(values, HTTP_METHODS.DELETE);
+}
+
 function submitValues(values, method) {
     return dispatch => {
         const id = values._id ? values._id : '';
@@ -49,10 +53,17 @@ function submitValues(values, method) {
 }
 
 export function showUpdate(billingCycle) {
-    const { tabUpdate } = BILLING_CYCLE_TABS;
+    return showTab(billingCycle, BILLING_CYCLE_TABS.tabUpdate);
+}
+
+export function showDelete(billingCycle) {
+    return showTab(billingCycle, BILLING_CYCLE_TABS.tabDelete);
+}
+
+function showTab(billingCycle, tab) {
     return [
-        selectTab(tabUpdate),
-        showTabs(tabUpdate),
+        selectTab(tab),
+        showTabs(tab),
         initializeForm(BILLING_CYCLE_FORM, billingCycle)
     ];
 }
