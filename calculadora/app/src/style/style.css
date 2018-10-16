@@ -8,6 +8,10 @@
   user-select: none;
 }
 
+button {
+	border: none;
+}
+
 html {
 	height: 100%;
 	background: url(https://33.media.tumblr.com/d4a884274dff05760e01bd3bdcc6defb/tumblr_nb1ulnMaP91st5lhmo1_1280.jpg);
@@ -28,10 +32,9 @@ html {
 }
 
 
-.top span.clear {
+.top button.clear {
 	position:absolute;
   z-index:6;
- 
 }
 
 
@@ -54,7 +57,7 @@ html {
 .keys, .top {overflow: hidden;}
 
 
-.keys span, .top span.clear {
+.keys button, .top button.clear {
 	float: left;
 	position: relative;
 	top: 0;
@@ -81,52 +84,55 @@ html {
 }
 
 
-.keys span.operator {
+.keys button.operator {
 	background: rgba(250,100,0,0.3);
 	margin-right: 0;
 }
 
-.keys span.eval {
+.keys button.eval {
 
 	color: #888e5f;
 }
 
-.top span.clear {
+.top button.clear {
 	background: transparent;
 	box-shadow: none;
 	color: #aaa;
   width:56px;
-  left:5px
+	left:5px;
+	border-radius: 50%;
+	border: none;
+	outline: none;
 }
 
 
-.keys span:hover {
+.keys button:hover {
 	background: rgba(255,255,255,0.8);
 	color: #333;
 }
 
-.keys span.eval:hover {
+.keys button.eval:hover {
 	background: #abb850;
 	color: #ffffff;
 }
 
-.top span.clear:hover {
+.top button.clear:hover {
   border-radius:190px;
 	background: rgba(0,0,0,0.1);
 	color: white;
 }
 
-.keys span:active {
+.keys button:active {
 	box-shadow: 0px 0px rgba(0, 0, 0, 0.2);
 	top: 4px;
 }
 
-.keys span.eval:active {
+.keys button.eval:active {
 	box-shadow: 0px 0px #717a33;
 	top: 4px;
 }
 
-.top span.clear:active {
+.top button.clear:active {
 	top: 4px;
 	box-shadow: 0px 0px #d3545d;
 }
