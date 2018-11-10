@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 const Square = props => (
-  <button className="square" onClick={() => props.onClick()}>
+  <button className="square" type="button" onClick={() => props.onClick()}>
     {props.value}
   </button>
 );
@@ -48,37 +48,66 @@ class Game extends React.Component {
       history: [{
         squares: Array(9).fill(null)
       }],
+      stepNumber: 0,
       xIsNext: true
     }
   }
   
   handleClick(i) {
     const history = this.getHistory();
-    const current = this.getCurrentStep();
+    const current = this.getCurrentHistory();
     const squares = current.squares.slice();
     if (calculateWinner(squares) || squares[i]) return;
 
     squares[i] = this.whoIsNext();
-    this.setState({ ...this.state, history: history.concat([{ squares }]), xIsNext: !this.state.xIsNext });
+    this.setState({
+      ...this.state,
+      history: history.concat([{ squares }]),
+      stepNumber: history.length,
+      xIsNext: !this.state.xIsNext
+    });
   }
 
-  whoIsNext = () => `${this.state.xIsNext ? 'X' : 'O'}`;
+  getHistory = () => { 
+    return this.state.history.slice(0, this.state.stepNumber + 1);
+  }
 
-  getHistory = () => this.state.history;
-
-  getCurrentStep() {
+  getCurrentHistory() {
     const history = this.getHistory();
     return history[history.length - 1];
   }
+
+  whoIsNext = () => `${this.state.xIsNext ? 'X' : 'O'}`;
 
   updateStatus(current) {
     const winner = calculateWinner(current.squares);
     return winner ? `Winner ${winner}` : `Next ${this.whoIsNext()}`;
   }
 
+  //atualiza o histório e quem é o próximo a jogar
+  jumpTo(move) {
+    this.setState({ ...this.state, stepNumber: move, xIsNext: (move % 2) === 0 });
+  }
+
+  getMoves() {
+    const history = this.getHistory();
+    const moves = history.map((step, move) => {
+      const desc = move ? `Ir para a jogada ${move}` : 'Reiniciar jogo';
+      return (
+        <li key={move}>
+          <button type="button" onClick={() => this.jumpTo(move)}>{desc}</button>
+        </li>
+      )
+    });
+
+    return moves;
+  }
+
   render() {
-    const current = this.getCurrentStep();
+    const current = this.getCurrentHistory();
     const status = this.updateStatus(current);
+    const moves = this.getMoves();
+   
     return (
       <div className="game">
         <div className="game-board">
@@ -89,7 +118,7 @@ class Game extends React.Component {
         </div>
         <div className="game-info">
           <div>{status}</div>
-          <ol>{/* TODO */}</ol>
+          <ol>{moves}</ol>
         </div>
       </div>
     );
