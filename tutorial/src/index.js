@@ -19,23 +19,21 @@ const Board = props => {
     )
   }
 
+  function drawSquares() {
+    return [0, 3, 6].map((value, i) => {
+      return (
+        <div className="board-row" key={i}>
+          {renderSquare(value)}
+          {renderSquare(value + 1)}
+          {renderSquare(value + 2)}
+        </div>
+      );
+    });
+  }
+
   return (
     <div>
-      <div className="board-row">
-        {renderSquare(0)}
-        {renderSquare(1)}
-        {renderSquare(2)}
-      </div>
-      <div className="board-row">
-        {renderSquare(3)}
-        {renderSquare(4)}
-        {renderSquare(5)}
-      </div>
-      <div className="board-row">
-        {renderSquare(6)}
-        {renderSquare(7)}
-        {renderSquare(8)}
-      </div>
+      {drawSquares()}
     </div>
   );
 }
@@ -52,7 +50,7 @@ class Game extends React.Component {
       xIsNext: true
     }
   }
-  
+
   handleClick(i) {
     const history = this.getHistory();
     const current = this.getCurrentHistory();
@@ -68,7 +66,7 @@ class Game extends React.Component {
     });
   }
 
-  getHistory = () => { 
+  getHistory = () => {
     return this.state.history.slice(0, this.state.stepNumber + 1);
   }
 
@@ -85,9 +83,7 @@ class Game extends React.Component {
   }
 
   //atualiza o histório e quem é o próximo a jogar
-  jumpTo(move) {
-    this.setState({ ...this.state, stepNumber: move, xIsNext: (move % 2) === 0 });
-  }
+  jumpTo = (move) => this.setState({ ...this.state, stepNumber: move, xIsNext: (move % 2) === 0 });
 
   getMoves() {
     const history = this.getHistory();
@@ -107,7 +103,7 @@ class Game extends React.Component {
     const current = this.getCurrentHistory();
     const status = this.updateStatus(current);
     const moves = this.getMoves();
-   
+
     return (
       <div className="game">
         <div className="game-board">
