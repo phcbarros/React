@@ -79,7 +79,8 @@ class Game extends React.Component {
 
   updateStatus(current) {
     const winner = calculateWinner(current.squares);
-    return winner ? `Winner ${winner}` : `Next ${this.whoIsNext()}`;
+    const hasNull = current.squares.some(value => value === null);
+    return winner ? `Winner ${winner}` : hasNull ? `Next ${this.whoIsNext()}` : 'Draw';
   }
 
   //atualiza o histório e quem é o próximo a jogar
@@ -114,7 +115,9 @@ class Game extends React.Component {
           />
         </div>
         <div className="game-info">
-          <div>{status}</div>
+          <div>
+        <h3 className="text-info">{status}</h3>
+          </div>
           <ol>{moves}</ol>
         </div>
       </div>
