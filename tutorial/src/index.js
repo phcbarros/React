@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 const Square = props => (
-  <button className="square" type="button" onClick={() => props.onClick()}>
+  <button type="button" 
+    className={"square " + (props.value === 'X'? 'text-danger' : 'text-warning')} 
+    onClick={() => props.onClick()}>
     {props.value}
   </button>
 );
