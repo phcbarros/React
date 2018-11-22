@@ -11,7 +11,7 @@ export const BILLING_CYCLE_FORM = 'billingCycleForm';
 
 class BillingCycleForm extends Component {
     render() {
-        const { handleSubmit, readOnly, buttonText } = this.props;
+        const { handleSubmit, readOnly, submitLabel, submitClass } = this.props;
         return (
             <form role="form" onSubmit={handleSubmit}>
                 <div className="box-body">
@@ -23,7 +23,7 @@ class BillingCycleForm extends Component {
                         label="Ano" placeholder="Informe o ano" type="number" readOnly={readOnly} />
                 </div>
                 <div className="box-footer">
-                    <Button type="submit" style="primary" label={buttonText}/>
+                    <Button type="submit" style={submitClass} label={submitLabel}/>
                     <Button type="button" style="default" label="Cancelar"
                         onClick={this.props.init} />
                 </div>
