@@ -19,3 +19,5 @@ Cria a store da aplicação
 Mapeia os valores do estado que vem da store para as propriedades do componente
 
 ## mapDispatchToProps
+
+Mapeia as actions e dispara os reducers

@@ -11,7 +11,7 @@ export const BILLING_CYCLE_FORM = 'billingCycleForm';
 
 class BillingCycleForm extends Component {
     render() {
-        const { handleSubmit, readOnly } = this.props;
+        const { handleSubmit, readOnly, buttonText } = this.props;
         return (
             <form role="form" onSubmit={handleSubmit}>
                 <div className="box-body">
@@ -23,7 +23,7 @@ class BillingCycleForm extends Component {
                         label="Ano" placeholder="Informe o ano" type="number" readOnly={readOnly} />
                 </div>
                 <div className="box-footer">
-                    <Button type="submit" style="primary" label="Cadastrar"/>
+                    <Button type="submit" style="primary" label={buttonText}/>
                     <Button type="button" style="default" label="Cancelar"
                         onClick={this.props.init} />
                 </div>
@@ -32,7 +32,7 @@ class BillingCycleForm extends Component {
     }
 }
 
-// Fazendo a ligação (decorando) com o reducer do redux-form
+// Fazendo a ligação (decorando) dos campos do formulário com o reducer do redux-form
 BillingCycleForm = reduxForm({ form: BILLING_CYCLE_FORM, destroyOnUnmount: false, })(BillingCycleForm);
 
 // Fazendo a ligação (decorando) com as actions
