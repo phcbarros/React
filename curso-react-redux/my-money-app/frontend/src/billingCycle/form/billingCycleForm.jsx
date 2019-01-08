@@ -27,7 +27,7 @@ class BillingCycleForm extends Component {
                     <ItemList cols='12 6'  list={credits} readOnly={readOnly} 
                         legend="Creditos" field={CREDITS}/>
                     <ItemList cols='12 6' list={debts} readOnly={readOnly} 
-                        legend="Débitos" field={DEBTS}/>
+                        legend="Débitos" field={DEBTS} showStatus={true}/>
                 </div>
                 <div className="box-footer">
                     <Button type="submit" style={submitClass} label={submitLabel}/>
