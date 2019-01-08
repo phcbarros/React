@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Field, arrayInsert } from 'redux-form';
+import { Field, arrayInsert, arrayRemove } from 'redux-form';
 import Grid from '../../common/layout/grid';
 import Input from '../../common/form/input';
 import IconButton from '../../common/form/iconButton';
@@ -12,6 +12,11 @@ class CreditList extends Component {
 
     add(index, item = {}) {
         this.props.arrayInsert(BILLING_CYCLE_FORM, 'credits', index, item);
+    }
+
+    remove(index, item = {}) {
+        if(this.props.list.length > 1)
+            this.props.arrayRemove(BILLING_CYCLE_FORM, 'credits', index);
     }
 
     renderRows() {
@@ -26,6 +31,7 @@ class CreditList extends Component {
                     <td>
                         <IconButton style="success" icon="plus" onClick={() => this.add(index + 1)} type="button" />
                         <IconButton style="warning" icon="clone" onClick={() => this.add(index + 1, item)} type="button" />
+                        <IconButton style="danger" icon="trash-o" onClick={() => this.remove(index)} type="button" />
                     </td>
                 </If>
             </tr>
@@ -57,6 +63,6 @@ class CreditList extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ arrayInsert }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ arrayInsert, arrayRemove }, dispatch);
 
 export default connect(null, mapDispatchToProps)(CreditList);

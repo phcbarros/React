@@ -11,3 +11,7 @@ button {
 .table-actions {
     width: 150px;
 }
+
+tr td button:first-child{
+    margin: 0;
+}
