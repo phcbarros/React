@@ -7,7 +7,7 @@ import { BILLING_CYCLE_TABS } from './billingCycle';
 import { selectTab, showTabs } from './../common/tabs/tabActions';
 
 const URL = 'http://localhost:3003/api/billingCycles'
-const INITIAL_VALUE = {};
+const INITIAL_VALUE = { credits: [{}] };
 const HTTP_METHODS = {
     POST: 'post',
     PUT: 'put',

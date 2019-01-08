@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -12,7 +12,7 @@ export const BILLING_CYCLE_FORM = 'billingCycleForm';
 
 class BillingCycleForm extends Component {
     render() {
-        const { handleSubmit, readOnly, submitLabel, submitClass } = this.props;
+        const { handleSubmit, readOnly, submitLabel, submitClass, credits } = this.props;
         return (
             <form role="form" onSubmit={handleSubmit}>
                 <div className="box-body">
@@ -22,7 +22,7 @@ class BillingCycleForm extends Component {
                         label="Mês" placeholder="Informe o mês" type="number" readOnly={readOnly} />
                     <Field name="year" component={LabelAndInput} cols="12 4"
                         label="Ano" placeholder="Informe o ano" type="number" readOnly={readOnly} />
-                    <CreditList cols='12 6' readOnly={readOnly}></CreditList>
+                    <CreditList cols='12 6' list={credits} readOnly={readOnly} />
                 </div>
                 <div className="box-footer">
                     <Button type="submit" style={submitClass} label={submitLabel}/>
@@ -37,7 +37,10 @@ class BillingCycleForm extends Component {
 // Fazendo a ligação (decorando) dos campos do formulário com o reducer do redux-form
 BillingCycleForm = reduxForm({ form: BILLING_CYCLE_FORM, destroyOnUnmount: false, })(BillingCycleForm);
 
+const selector = formValueSelector(BILLING_CYCLE_FORM); //função usada para recuperar os valores do formulário
+const mapStateToProps = state => ({ credits: selector(state, 'credits')}); // mapeando o estado para as props
+
 // Fazendo a ligação (decorando) com as actions
 const mapDispatchToProps = dispatch => bindActionCreators({ init }, dispatch);
 
-export default connect(null, mapDispatchToProps)(BillingCycleForm);
+export default connect(mapStateToProps, mapDispatchToProps)(BillingCycleForm);
