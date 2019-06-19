@@ -1,6 +1,6 @@
 const USER_KEY = '_mymoney_user'
 const initialState = {
-  user: { name: 'teste', email: 'teste.com' }, //JSON.parse(localStorage.getItem(USER_KEY)),
+  user: JSON.parse(localStorage.getItem(USER_KEY)),
   validToken: false,
 }
 
@@ -13,11 +13,11 @@ export default (state = initialState, action) => {
       if (payload) {
         return { ...state, validToken: true }
       } else {
-        localStorage.removeItem(userKey)
+        localStorage.removeItem(USER_KEY)
         return { ...state, validToken: false, user: null }
       }
     case USER_FETCHED:
-      localStorage.setItem(userKey, JSON.stringify(payload))
+      localStorage.setItem(USER_KEY, JSON.stringify(payload))
       return { ...state, user: payload, validToken: true }
     default:
       return state
