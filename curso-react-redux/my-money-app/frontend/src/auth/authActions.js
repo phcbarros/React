@@ -24,6 +24,14 @@ const submit = (values, url) => {
   }
 }
 
+export const USER_FETCHED = 'USER_FETCHED'
+const userFetched = (payload) => {
+  return {
+    type: USER_FETCHED,
+    payload,
+  }
+}
+
 export const TOKEN_VALIDATED = 'TOKEN_VALIDATED'
 export const logout = () => {
   return {

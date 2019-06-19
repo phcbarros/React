@@ -6,7 +6,7 @@ const initialState = {
 
 import { TOKEN_VALIDATED, USER_FETCHED } from './authActions'
 
-export default (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   const { type, payload } = action
   switch (type) {
     case TOKEN_VALIDATED:
@@ -23,3 +23,5 @@ export default (state = initialState, action) => {
       return state
   }
 }
+
+export default reducer

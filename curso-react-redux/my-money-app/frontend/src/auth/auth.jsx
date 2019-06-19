@@ -1,16 +1,15 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import './auth.css'
 import { login, signup } from './authActions'
-import { Row } from '../common/layout/row'
-import { Grid } from '../common/layout/grid'
-import If from '../common/operator/if'
+import Row from '../common/layout/row'
+import Grid from '../common/layout/grid'
 import Messages from '../common/message/message'
 import Input from '../common/form/inputAuth'
 
-class Auth extends React.Component {
+class Auth extends Component {
   constructor(props) {
     super(props)
     this.state = { loginMode: true }
@@ -88,6 +87,8 @@ class Auth extends React.Component {
     )
   }
 }
+
+Auth = reduxForm({ form: 'authForm' })(Auth)
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ login, signup }, dispatch)
