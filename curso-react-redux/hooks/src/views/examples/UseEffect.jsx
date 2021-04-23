@@ -9,12 +9,19 @@ function calcFatorial(num) {
   return calcFatorial(number - 1) * number
 }
 
+function checkIsOdd(num) {
+  const number = parseInt(num, 10)
+  return number % 2 === 0 ? true : false
+}
+
 const UseEffect = (props) => {
   const [number, setNumber] = useState(1)
   const [fatorial, setFatorial] = useState(1)
+  const [isOdd, setIsOdd] = useState(true)
 
   useEffect(() => {
     setFatorial(calcFatorial(number))
+    setIsOdd(checkIsOdd(number))
   }, [number])
 
   useEffect(() => {
@@ -45,7 +52,12 @@ const UseEffect = (props) => {
         />
       </div>
       <SectionTitle title="Exercício 2" />
-      <div className="center"></div>
+      <div className="center">
+        <div>
+          <span className="text">Status: </span>
+          <span className="text red">{isOdd ? 'Par' : 'Ímpar'}</span>
+        </div>
+      </div>
     </div>
   )
 }
